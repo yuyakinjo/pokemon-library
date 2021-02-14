@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { combineLatest } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs/operators';
 import { MonstersStoreService } from './services/monsters-store.service';
 
 @Component({
@@ -17,7 +17,11 @@ export class AppComponent {
   readonly getMonsters$ = this.MonstersStoreService.getMonsters$();
 
   search = new FormControl('');
-  searching$ = this.search.valueChanges.pipe(switchMap((word) => this.MonstersStoreService.getMonsters$(word)));
+  searching$ = this.search.valueChanges.pipe(
+    debounceTime(500),
+    distinctUntilChanged(),
+    switchMap((word) => this.MonstersStoreService.getMonsters$(word))
+  );
 
   constructor(private MonstersStoreService: MonstersStoreService) {}
 }
