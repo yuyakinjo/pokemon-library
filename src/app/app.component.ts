@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { MonstersStoreService } from './services/monsters-store.service';
@@ -7,6 +7,7 @@ import { MonstersStoreService } from './services/monsters-store.service';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.styl'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   title = 'pokemon-library';
