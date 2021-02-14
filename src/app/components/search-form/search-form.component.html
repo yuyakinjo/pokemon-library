@@ -1,1 +1,2 @@
-<p>search-form works!</p>
+<ng-container *ngIf="searching$ | async"></ng-container>
+<input type="text" [formControl]="search" />

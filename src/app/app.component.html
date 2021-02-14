@@ -1,9 +1,9 @@
 <ng-container *ngIf="getMonsters$ | async"></ng-container>
-<ng-container *ngIf="searching$ | async"></ng-container>
 
 <ng-container *ngIf="vm$ | async as vm">
   <h1>{{ title }}</h1>
-  <input type="text" [formControl]="search" />
+
+  <app-search-form></app-search-form>
   <ul>
     <li *ngFor="let monster of vm.monsters">{{ monster.name.japanese }}</li>
   </ul>
