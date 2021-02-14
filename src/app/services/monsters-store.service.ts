@@ -14,6 +14,8 @@ export class MonstersStoreService {
 
   monsters$ = this.#monsters.asObservable();
 
-  getMonsters$ = () =>
-    this.http.get<Monster[]>(`http://localhost:3000/monsters`).pipe(tap((monsters) => this.#monsters.next(monsters)));
+  getMonsters$ = (params = '') =>
+    this.http
+      .get<Monster[]>(`http://localhost:3000/monsters?q=${params}`)
+      .pipe(tap((monsters) => this.#monsters.next(monsters)));
 }
