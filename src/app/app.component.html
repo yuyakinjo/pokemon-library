@@ -1,1 +1,7 @@
-<h1>{{ title }}</h1>
+<ng-container *ngIf="getMonsters$ | async"></ng-container>
+<ng-container *ngIf="vm$ | async as vm">
+  <h1>{{ title }}</h1>
+  <ul>
+    <li *ngFor="let monster of vm.monsters">{{ monster.name.japanese }}</li>
+  </ul>
+</ng-container>

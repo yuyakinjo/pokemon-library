@@ -12,7 +12,7 @@ export class AppComponent {
   title = 'pokemon-library';
 
   readonly vm$ = combineLatest([this.MonstersStoreService.monsters$]).pipe(map(([monsters]) => ({ monsters })));
-  readonly getMonsters = this.MonstersStoreService.getMonsters$();
+  readonly getMonsters$ = this.MonstersStoreService.getMonsters$();
 
   constructor(private MonstersStoreService: MonstersStoreService) {}
 }
