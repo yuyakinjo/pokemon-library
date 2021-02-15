@@ -3,8 +3,11 @@
 <ng-container *ngIf="vm$ | async as vm">
   <h1>{{ title }}</h1>
 
-  <app-search-form></app-search-form>
-  <ul>
-    <li *ngFor="let monster of vm.monsters">{{ monster.name.japanese }}</li>
-  </ul>
+  <ng-container *ngIf="!vm.monsters; else noData">
+    <app-search-form></app-search-form>
+    <ul>
+      <li *ngFor="let monster of vm.monsters">{{ monster.name.japanese }}</li>
+    </ul>
+  </ng-container>
+  <ng-template #noData> now loading... </ng-template>
 </ng-container>
