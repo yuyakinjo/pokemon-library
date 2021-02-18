@@ -13,8 +13,8 @@ export class SearchFormComponent {
   searching$ = this.search.valueChanges.pipe(
     debounceTime(500),
     distinctUntilChanged(),
-    switchMap((word) => this.MonstersStoreService.getMonsters$(word))
+    switchMap((word) => this.monstersStoreService.getMonsters$(word))
   );
 
-  constructor(private MonstersStoreService: MonstersStoreService) {}
+  constructor(private monstersStoreService: MonstersStoreService) {}
 }

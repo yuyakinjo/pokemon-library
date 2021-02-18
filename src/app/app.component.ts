@@ -12,8 +12,8 @@ import { MonstersStoreService } from './services/monsters-store.service';
 export class AppComponent {
   title = 'pokemon-library';
 
-  readonly vm$ = combineLatest([this.MonstersStoreService.monsters$]).pipe(map(([monsters]) => ({ monsters })));
-  readonly getMonsters$ = this.MonstersStoreService.getMonsters$();
+  readonly vm$ = combineLatest([this.monstersStoreService.monsters$]).pipe(map(([monsters]) => ({ monsters })));
+  readonly getMonsters$ = this.monstersStoreService.getMonsters$();
 
-  constructor(private MonstersStoreService: MonstersStoreService) {}
+  constructor(private monstersStoreService: MonstersStoreService) {}
 }

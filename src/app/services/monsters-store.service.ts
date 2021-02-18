@@ -8,11 +8,10 @@ import { Monster } from '../models/monster';
   providedIn: 'root',
 })
 export class MonstersStoreService {
-  constructor(private http: HttpClient) {}
-
   #monsters = new BehaviorSubject<Monster[]>([]);
-
   monsters$ = this.#monsters.asObservable();
+
+  constructor(private http: HttpClient) {}
 
   getMonsters$ = (params = '') =>
     this.http
