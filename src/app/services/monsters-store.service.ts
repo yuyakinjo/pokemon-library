@@ -14,7 +14,14 @@ export class MonstersStoreService {
   constructor(private http: HttpClient) {}
 
   getMonsters$ = (params = '') =>
-    this.http
-      .get<Monster[]>(`http://localhost:3000/monsters?q=${params}`)
-      .pipe(tap((monsters) => this.#monsters.next(monsters)));
+    this.http.get<Monster[]>(`http://localhost:3000/monsters?q=${params}`).pipe(
+      shareReplay(),
+      tap((monsters) => this.#monsters.next(monsters)),
+      backoff(10, 250),
+      catchError((error) => {
+        console.error('error', `${error}`);
+        return of(error);
+      })
+    );
+
 }
