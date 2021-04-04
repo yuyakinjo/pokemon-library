@@ -1,15 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { BehaviorSubject, of } from 'rxjs';
+import { catchError, shareReplay, tap } from 'rxjs/operators';
 import { Monster } from '../models/monster';
+import { backoff } from '../operators/backoff';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MonstersStoreService {
   #monsters = new BehaviorSubject<Monster[]>([]);
-  monsters$ = this.#monsters.asObservable();
+  #selectedMonsters = new BehaviorSubject<Partial<Monster>>({});
+  readonly monsters$ = this.#monsters.asObservable();
+  readonly selectedMonsters$ = this.#selectedMonsters.asObservable();
 
   constructor(private http: HttpClient) {}
 
@@ -23,5 +26,7 @@ export class MonstersStoreService {
         return of(error);
       })
     );
+
+  selected = (monster: Monster): void => this.#selectedMonsters.next(monster);
 
 }

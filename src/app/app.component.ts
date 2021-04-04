@@ -14,6 +14,9 @@ export class AppComponent {
 
   readonly vm$ = combineLatest([this.monstersStoreService.monsters$]).pipe(map(([monsters]) => ({ monsters })));
   readonly getMonsters$ = this.monstersStoreService.getMonsters$();
+  readonly selectedMonsters$ = this.monstersStoreService.selectedMonsters$;
 
   constructor(private monstersStoreService: MonstersStoreService) {}
+
+  select = (monster: Monster) => this.monstersStoreService.selected(monster);
 }
