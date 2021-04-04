@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Monster } from './models/monster';
 import { MonstersStoreService } from './services/monsters-store.service';
 
 @Component({
@@ -19,4 +20,6 @@ export class AppComponent {
   constructor(private monstersStoreService: MonstersStoreService) {}
 
   select = (monster: Monster) => this.monstersStoreService.selected(monster);
+
+  clear = () => this.monstersStoreService.clear();
 }

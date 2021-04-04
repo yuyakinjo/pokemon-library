@@ -29,4 +29,5 @@ export class MonstersStoreService {
 
   selected = (monster: Monster): void => this.#selectedMonsters.next(monster);
 
+  clear = (): void => this.#selectedMonsters.next({});
 }

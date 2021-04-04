@@ -6,6 +6,7 @@
   </ul>
 </ng-container>
 
+<button (click)="clear()">リセット</button>
 
 <ng-container *ngIf="vm$ | async as vm">
   <h1>{{ title }}</h1>
