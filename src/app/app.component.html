@@ -2,6 +2,7 @@
 
 <ng-container *ngIf="selectedMonsters$ | async as selected">
   <ul>
+    <li>{{ selected.id }}</li>
     <li>{{ selected.name?.japanese }}</li>
   </ul>
 </ng-container>
@@ -14,7 +15,7 @@
   <ng-container *ngIf="vm.monsters.length; else noData">
     <app-search-form></app-search-form>
     <ul>
-      <li *ngFor="let monster of vm.monsters" (click)="select(monster)">{{ monster.name.japanese }}</li>
+      <li *ngFor="let monster of vm.monsters" (click)="select(monster)">{{ monster.id }}{{ monster.name.japanese }}</li>
     </ul>
   </ng-container>
   <ng-template #noData> now loading... </ng-template>

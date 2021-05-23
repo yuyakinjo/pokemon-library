@@ -11,8 +11,7 @@ import { MonstersStoreService } from './services/monsters-store.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  title = 'pokemon-library';
-
+  readonly title = 'pokemon-library';
   readonly vm$ = combineLatest([this.monstersStoreService.monsters$]).pipe(map(([monsters]) => ({ monsters })));
   readonly getMonsters$ = this.monstersStoreService.getMonsters$();
   readonly selectedMonsters$ = this.monstersStoreService.selectedMonsters$;
